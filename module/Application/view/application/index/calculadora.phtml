@@ -1,0 +1,57 @@
+<?php
+
+    $title = '';
+
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+
+$identificacion = $form->get('identificacion');
+$identificacion->setAttribute('class', 'form-control');
+$identificacion->setAttribute('placeholder', 'Identifación');
+
+$nombres = $form->get('nombres');
+$nombres->setAttribute('class', 'form-control');
+$nombres->setAttribute('placeholder', 'Nombres y Apellidos');
+
+$valor = $form->get('valor');
+$valor->setAttribute('class', 'form-control');
+$valor->setAttribute('placeholder', 'Valor a solicitar');
+
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('application', ['action' => 'generar']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+?>  
+
+<div class="form-group">
+    <?= $this->formLabel($identificacion) ?>
+    <?= $this->formElement($identificacion) ?>
+    <?= $this->formElementErrors()->render($identificacion, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($nombres) ?>
+    <?= $this->formElement($nombres) ?>
+    <?= $this->formElementErrors()->render($nombres, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($valor) ?>
+    <?= $this->formElement($valor) ?>
+    <?= $this->formElementErrors()->render($valor, ['class' => 'help-block']) ?>
+</div>
+
+<?php 
+
+echo $this->formSubmit($submit);
+
+echo $this->form()->closeTag();
+
+?>
