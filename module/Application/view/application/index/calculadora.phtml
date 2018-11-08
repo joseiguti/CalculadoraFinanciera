@@ -13,15 +13,44 @@ $identificacion->setAttribute('placeholder', 'Identifación');
 
 $nombres = $form->get('nombres');
 $nombres->setAttribute('class', 'form-control');
-$nombres->setAttribute('placeholder', 'Nombres y Apellidos');
+$nombres->setAttribute('placeholder', 'Nombres');
+
+$apellidos = $form->get('apellidos');
+$apellidos->setAttribute('class', 'form-control');
+$apellidos->setAttribute('placeholder', 'Apellidos');
 
 $valor = $form->get('valor');
 $valor->setAttribute('class', 'form-control');
 $valor->setAttribute('placeholder', 'Valor a solicitar');
 
+$tipo_prestamo = $form->get('tipo_prestamo');
+$tipo_prestamo->setAttribute('class', 'form-control');
+
+$periodo_gracia = $form->get('periodo_gracia');
+$periodo_gracia->setAttribute('class', 'form-control');
+
+
+$plazo = $form->get('plazo');
+$plazo->setAttribute('class', 'form-control');
+
+$amortizacion = $form->get('amortizacion');
+$amortizacion->setAttribute('class', 'form-control');
 
 $submit = $form->get('submit');
-$submit->setAttribute('class', 'btn btn-primary');
+$submit->setAttribute('class', 'btn btn-primary btn-lg btn-block');
+
+$efectiva_anual = $form->get('efectiva_anual');
+$efectiva_anual->setAttribute('class', 'form-control');
+$efectiva_anual->setAttribute('placeholder', '0,00');
+
+$nominal_anual = $form->get('nominal_anual');
+$nominal_anual->setAttribute('class', 'form-control');
+$nominal_anual->setAttribute('placeholder', '0,00');
+
+$periodica = $form->get('periodica');
+$periodica->setAttribute('class', 'form-control');
+$periodica->setAttribute('placeholder', '0,00');
+
 
 $form->setAttribute('action', $this->url('application', ['action' => 'generar']));
 $form->prepare();
@@ -29,29 +58,125 @@ $form->prepare();
 echo $this->form()->openTag($form);
 
 ?>  
-
-<div class="form-group">
-    <?= $this->formLabel($identificacion) ?>
+<div class="card">
+  <div class="card-header">
+    Calculadora de Credito
+  </div>
+<div class="card-body">
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <label class="input-group-text" for="identificacion">ID:</label>
+  </div>
     <?= $this->formElement($identificacion) ?>
     <?= $this->formElementErrors()->render($identificacion, ['class' => 'help-block']) ?>
 </div>
 
-<div class="form-group">
-    <?= $this->formLabel($nombres) ?>
+<div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text">Nombre:</span>
+  </div>
     <?= $this->formElement($nombres) ?>
+    <?= $this->formElement($apellidos) ?>
     <?= $this->formElementErrors()->render($nombres, ['class' => 'help-block']) ?>
 </div>
-
-<div class="form-group">
-    <?= $this->formLabel($valor) ?>
+</br>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text">$</span>
+  </div>
     <?= $this->formElement($valor) ?>
+    <div class="input-group-append">
+    <span class="input-group-text">.00</span>
+  </div>
     <?= $this->formElementErrors()->render($valor, ['class' => 'help-block']) ?>
 </div>
 
-<?php 
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <label class="input-group-text" for="tipo_prestamo">Tipo prestamo:</label>
+  </div>
+    <?= $this->formElement($tipo_prestamo) ?>
+    <?= $this->formElementErrors()->render($tipo_prestamo, ['class' => 'help-block']) ?>
+</div>
 
-echo $this->formSubmit($submit);
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text">Periodo gracia</span>
+  </div>
+    <?= $this->formElement($periodo_gracia) ?>
+    <div class="input-group-append">
+    <span class="input-group-text">Años</span>
+  </div>
+    <?= $this->formElementErrors()->render($valor, ['class' => 'help-block']) ?>
+</div>
 
-echo $this->form()->closeTag();
 
-?>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+    <label class="input-group-text" for="plazo">Plazo:</label>
+  </div>
+    <?= $this->formElement($plazo) ?>
+    <?= $this->formElementErrors()->render($plazo, ['class' => 'help-block']) ?>
+</div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <label class="input-group-text" for="amortizacion">Amortización:</label>
+  </div>
+    <?= $this->formElement($amortizacion) ?>
+    <?= $this->formElementErrors()->render($amortizacion, ['class' => 'help-block']) ?>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Tasas de interes
+  </div>
+<div class="card-body">
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <label class="input-group-text" for="efectiva_anual">Efectiva anual:</label>
+  </div>
+    <?= $this->formElement($efectiva_anual) ?>
+    <div class="input-group-append">
+    <span class="input-group-text">%</span>
+  </div>
+    <?= $this->formElementErrors()->render($efectiva_anual, ['class' => 'help-block']) ?>
+</div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <label class="input-group-text" for="nominal_anual">Nominal anual:</label>
+  </div>
+    <?= $this->formElement($nominal_anual) ?>
+    <div class="input-group-append">
+    <span class="input-group-text">%</span>
+  </div>
+    <?= $this->formElementErrors()->render($nominal_anual, ['class' => 'help-block']) ?>
+</div>
+
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <label class="input-group-text" for="periodica">Periodica:</label>
+  </div>
+    <?= $this->formElement($periodica) ?>
+    <div class="input-group-append">
+    <span class="input-group-text">%</span>
+  </div>
+    <?= $this->formElementErrors()->render($periodica, ['class' => 'help-block']) ?>
+</div>
+</div></div>
+
+</br>
+
+<?= $this->formSubmit($submit); ?>
+
+
+<?= $this->form()->closeTag(); ?>
+</br> 
+<blockquote class="blockquote mb-0">
+      <p>Por favor diligencie todos los campos antes de continuar.</p>
+      <footer class="blockquote-footer">"Juntos hacemos sus <cite title="Source Title">Sueños</cite> realidad"</footer>
+    </blockquote>
+</div>
+</div>

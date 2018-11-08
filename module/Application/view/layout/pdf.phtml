@@ -1,0 +1,55 @@
+<table>
+	<thead>
+	<tr>
+		<td colspan="2"><b>Datos personales</b></td>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Nombre completo:</td>
+		<td><?= $this->nombre_completo ?></td>
+	</tr>
+	<tr>
+		<td>Indentificación:</td>
+		<td><?= $this->identificacion ?></td>
+	</tr>
+	<tr>
+		<td>Valor solicitado:</td>
+		<td>$<?= number_format($this->valor_solicitado,2) ?></td>
+	</tr>
+	<tr>
+		<td>Plazo:</td>
+		<td><?= $this->plazo ?> años</td>
+	</tr>
+	<tr>
+		<td>Periodo de gracia:</td>
+		<td><?= $this->periodo_gracia ?> años</td>
+	</tr>
+	<tr>
+		<td>Amortización:</td>
+		<td>Cada <?= $this->amortizacion ?> días</td>
+	</tr>
+	</tbody>
+</table>
+<br><br>
+<table>
+	<thead>
+	<tr>
+		<td colspan="2"><b>Tasas de Interes</b></td>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Efectiva anual:</td>
+		<td><?= $this->efectivo_anual ?>%</td>
+	</tr>
+	<tr>
+		<td>Nominal anual:</td>
+		<td><?= $this->nominal_anual ?>%</td>
+	</tr>
+	<tr>
+		<td>Periodica:</td>
+		<td><?= $this->periodico ?>%</td>
+	</tr>
+	</tbody>
+</table>
