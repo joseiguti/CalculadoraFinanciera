@@ -16,6 +16,8 @@ class Calculadora {
     
     private $prestamo = 0;
     
+    private $periodo_gracia = 0;
+    
     public function __construct($dataForm){
         
         $this->plazo = $dataForm->plazo;
@@ -23,6 +25,8 @@ class Calculadora {
         $this->amortizacion = $dataForm->amortizacion;
         
         $this->prestamo = $dataForm->valor;
+        
+        $this->periodo_gracia = $dataForm->periodo_gracia;
         
         if ($dataForm->efectiva_anual != 0){
             
@@ -55,6 +59,8 @@ class Calculadora {
     
     public  function getTableAmortizacionCuotaFija (){
         
+        //$periodoGraciaDesde = ($this->periodo_gracia*12*30);
+        
         $cantCuotas = (($this->plazo*12*30)/$this->amortizacion);
         
         $html = '';
@@ -79,8 +85,7 @@ class Calculadora {
                     '<td>$'.number_format($amortizacionCapital,2).'</td>'.
                     '<td>$'.number_format($amortizacionIntereses,2).'</td>'.
                     '<td>$'.number_format($cuotaFija,2).'</td>'.
-                    '<td>$'.number_format($flujoCaja,2).'</td>'
-                        ;
+                    '<td>$'.number_format($flujoCaja,2).'</td>';
         
             $html .= '</tr>';
 

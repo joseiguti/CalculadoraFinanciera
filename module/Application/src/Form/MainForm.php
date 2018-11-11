@@ -43,6 +43,9 @@ class MainForm extends Form {
             'options' => [
                 'label' => 'Valor prestamo',
             ],
+            'attributes' => [
+                'id' => 'valor',
+            ],
         ]);
         
         $this->add([

@@ -32,6 +32,7 @@ $(document).ready(function() {
 	         "Trimestral":90,
 	 };
 	 
+	 
 	 $('#tipo_prestamo').on('change', function() {
 		  
 		 if (this.value == "gracia"){
