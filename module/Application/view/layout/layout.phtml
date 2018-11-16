@@ -16,8 +16,10 @@
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
         ?>
-        <?= $this->headScript()->appendFile('/js/jquery-3.1.0.min.js', 'text/javascript') ?>
-        <?= $this->headScript()->appendFile('/js/dinamico.js', 'text/javascript') ?>
+        <script src="<?= $this->basePath() ?>/js/jquery-3.1.0.min.js"></script>
+    	<script src="<?= $this->basePath() ?>/js/dinamico.js"></script>
+    	<script src="<?= $this->basePath() ?>/js/numeral.js"></script>
+                
   </head>
 
   <body>

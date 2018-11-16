@@ -75,5 +75,23 @@ $(document).ready(function() {
 		 
 	 });
 	 
+	 
+	 $("#valor").on('keyup', function(){
+		 
+		 var string = numeral($("#valor").val()).format('0,0');
+		 
+		 $("#valor").val(string);
+		 
+	 });
+	 
+	 
+	 $("#formulario").submit(function(e){
+		 
+		 var string = numeral($("#valor").val());
+		 
+		 $("#valor").val(string.value());
+		 
+     });
+	 
   });
  

@@ -59,7 +59,7 @@ class Calculadora {
     
     public  function getTableAmortizacionCuotaFija (){
         
-        //$periodoGraciaDesde = ($this->periodo_gracia*12*30);
+        $cantCuotasPeriodoGracia = ($this->periodo_gracia*12*30)/($this->amortizacion);
         
         $cantCuotas = (($this->plazo*12*30)/$this->amortizacion);
         
@@ -68,6 +68,8 @@ class Calculadora {
         $saldoCapital = $this->prestamo;
         
         $amortizacionIntereses = 0;
+        
+        $sumaAmortizacionIntereses = 0;
         
         $amortizacionCapital = 0;
         
@@ -84,18 +86,41 @@ class Calculadora {
                     '<td>$'.number_format(abs($saldoCapital),2).'</td>'.
                     '<td>$'.number_format($amortizacionCapital,2).'</td>'.
                     '<td>$'.number_format($amortizacionIntereses,2).'</td>'.
-                    '<td>$'.number_format($cuotaFija,2).'</td>'.
-                    '<td>$'.number_format($flujoCaja,2).'</td>';
+                    '<td>$'.number_format( (($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia)?0:$cuotaFija), 2).'</td>'.
+                    '<td>($'.number_format($flujoCaja,2).')</td>';
         
             $html .= '</tr>';
 
-            $cuotaFija = $this->calculateAmortizacion($this->prestamo, $this->periodico, $cantCuotas);
-            
             $amortizacionIntereses = ($saldoCapital * ($this->periodico/100));
             
-            $amortizacionCapital = $cuotaFija - $amortizacionIntereses;
+            if ($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia)
+                
+                $sumaAmortizacionIntereses = $sumaAmortizacionIntereses + $amortizacionIntereses;
+            
+            
+            $cuotaFija = $this->calculateAmortizacion( ($this->prestamo+$sumaAmortizacionIntereses), $this->periodico, ($cantCuotas-$cantCuotasPeriodoGracia));
+            
+            
+            
+            if ($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia){
+                
+                $amortizacionCapital = 0;
+                
+            }else{
+                
+                $amortizacionCapital = $cuotaFija - $amortizacionIntereses;
+            }
 
-            $saldoCapital = $saldoCapital - $amortizacionCapital;
+            if ($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia){
+                
+                $saldoCapital = $saldoCapital + $amortizacionIntereses;
+                
+            }else{
+                
+                $saldoCapital = $saldoCapital - $amortizacionCapital;
+                
+            }
+            
             
             $flujoCaja = $amortizacionIntereses + $amortizacionCapital;
         }
