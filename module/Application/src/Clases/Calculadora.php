@@ -79,15 +79,21 @@ class Calculadora {
         
         for ($i = 0; $i <= $cantCuotas; $i++){
         
+            if ($i%2==0){
+                $bgcolor ='#b5fff8';
+            }else{
+                $bgcolor = '';
+            }
+            
             $html .= '<tr>';
             
-            $html .= '<td>'.$i.'</td>'.
-                    '<td>'.date("Y-m-d",strtotime("+".$i." months")).'</td>'.
-                    '<td>$'.number_format(abs($saldoCapital),2).'</td>'.
-                    '<td>$'.number_format($amortizacionCapital,2).'</td>'.
-                    '<td>$'.number_format($amortizacionIntereses,2).'</td>'.
-                    '<td>$'.number_format( (($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia)?0:$cuotaFija), 2).'</td>'.
-                    '<td>($'.number_format($flujoCaja,2).')</td>';
+            $html .= '<td style="background-color: '.$bgcolor.'">'.$i.'</td>'.
+                '<td style="background-color: '.$bgcolor.'">'.date("Y-m-d",strtotime("+".($i*($this->amortizacion/30))." months")) .'</td>'.
+                    '<td style="background-color: '.$bgcolor.'">$'.number_format(abs($saldoCapital),2).'</td>'.
+                    '<td style="background-color: '.$bgcolor.'">$'.number_format($amortizacionCapital,2).'</td>'.
+                    '<td style="background-color: '.$bgcolor.'">$'.number_format($amortizacionIntereses,2).'</td>'.
+                    '<td style="background-color: '.$bgcolor.'">$'.number_format( (($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia+1)?0:$cuotaFija), 2).'</td>'.
+                    '<td style="background-color: '.$bgcolor.'">'.(($i!=0)?'(':'').'$'.number_format( $flujoCaja ,2).(($i!=0)?')':'').'</td>';
         
             $html .= '</tr>';
 
@@ -122,7 +128,15 @@ class Calculadora {
             }
             
             
-            $flujoCaja = $amortizacionIntereses + $amortizacionCapital;
+            if ($this->periodo_gracia!=0 && $i < $cantCuotasPeriodoGracia){
+                
+                $flujoCaja = 0;
+                
+            }else{
+            
+                $flujoCaja = $amortizacionIntereses + $amortizacionCapital;
+                
+            }
         }
         
         return $html;
