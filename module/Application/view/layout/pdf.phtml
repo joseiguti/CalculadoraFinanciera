@@ -1,12 +1,22 @@
 <table>
 	<thead>
 	<tr>
-		<td colspan="2"><b>Datos personales</b></td>
+		<td colspan="3"><b>Banco del Estado / Bansoft - Software para Bancos</b></td>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
-		<td>Nombre completo:</td>
+		<td colspan="3">
+		Apreciado cliente; con el ánimo de ayudarle a usted a tomar la mejor decisión, sirvase de tomar como referencia este reporte para que pueda se pueda llevar una idea del credito que desea para darle vida a sus sueños.
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="2"><b>Datos del credito y cliente:</b></td>
+	</tr>
+	<tr>
+		<td rowspan="10"><img src="/img/logo.png"></td>
+		<td>Nombre tomador de credito:</td>
 		<td><?= $this->nombre_completo ?></td>
 	</tr>
 	<tr>
@@ -26,19 +36,12 @@
 		<td><?= $this->periodo_gracia ?> años</td>
 	</tr>
 	<tr>
-		<td>Amortización:</td>
+		<td>Periodo de amortización:</td>
 		<td>Cada <?= $this->amortizacion ?> días</td>
 	</tr>
-	</tbody>
-</table>
-<br><br>
-<table>
-	<thead>
 	<tr>
-		<td colspan="2"><b>Tasas de Interes</b></td>
+		<td colspan="2"><b>Tasas de Interes aplicada:</b></td>
 	</tr>
-	</thead>
-	<tbody>
 	<tr>
 		<td>Efectiva anual:</td>
 		<td><?= $this->efectivo_anual ?>%</td>
@@ -51,5 +54,6 @@
 		<td>Periodica:</td>
 		<td><?= $this->periodico ?>%</td>
 	</tr>
+	
 	</tbody>
 </table>

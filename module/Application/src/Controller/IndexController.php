@@ -84,6 +84,14 @@ class IndexController extends AbstractActionController
         
         $viewTable->setTemplate('layout/table_pdf.phtml');
         
+        if ($_POST['periodo_gracia'] == 0)
+        
+            $viewTable->setVariable('tableTittle', 'Cuadro de amortización cuota fija');
+        
+        else
+            
+            $viewTable->setVariable('tableTittle', 'Cuadro de amortización cuota fija con periodo de gracia');
+        
         $viewTable->setVariable('tableContent', $calculadora->getTableAmortizacionCuotaFija());
         
         $htmlTable = $renderer->render($viewTable);

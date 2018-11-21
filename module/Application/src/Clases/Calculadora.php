@@ -80,7 +80,7 @@ class Calculadora {
         for ($i = 0; $i <= $cantCuotas; $i++){
         
             if ($i%2==0){
-                $bgcolor ='#b5fff8';
+                $bgcolor ='#ede5ff';
             }else{
                 $bgcolor = '';
             }
