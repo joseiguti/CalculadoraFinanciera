@@ -5,31 +5,45 @@ $(document).ready(function() {
 	var $amortizacion_values = $('#amortizacion');
 	
 	var plazosPG = {
-		            "5 Años":5,
-		            "6 Años":6,
-		            "7 Años":7,
-		            "8 Años":8,
-		            "9 Años":9,
-		            "10 Años":10,
+			"1 Año":1,
+	 		"2 Año":2,
+            "3 Años":3,
+            "4 Años":4,
+            "5 Años":5,
+            "6 Años":6,
+            "7 Años":7,
+            "8 Años":8,
+            "9 Años":9,
+            "10 Años":10,
 	};
 	
 	 var plazosCF = {
+			 		"1 Año":1,
+			 		"2 Año":2,
 	                "3 Años":3,
 	                "4 Años":4,
 	                "5 Años":5,
 	                "6 Años":6,
-	                "7 Años":7
+	                "7 Años":7,
+	                "8 Años":8,
+	                "9 Años":9,
+	                "10 Años":10,
 	 };
 	 
 	 var amortizacionPG = {
 			 "Mensual":30,
 			 "Bimestral":60,
 	         "Trimestral":90,
+	         "Semestral":180,
+	         "Anual":360,
 	 };
 	 
 	 var amortizacionCF = {
 	         "Mensual":30,
+	         "Bimestral":60,
 	         "Trimestral":90,
+	         "Semestral":180,
+	         "Anual":360,
 	 };
 	 
 	 
